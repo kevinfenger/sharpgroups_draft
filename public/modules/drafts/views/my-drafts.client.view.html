@@ -1,0 +1,21 @@
+<section class="row" data-ng-controller="MyDraftsController" data-ng-init="findUserDrafts()">
+	<div class="page-header">
+            <h1>My Drafts</h1>
+	</div>
+        <table class="table table-striped"> 
+            <thead> 
+                <th>Draft Name</th> 
+                <th>Commissioner</th> 
+                <th>Starts In</th> 
+                <th></th> 
+            </thead>
+            <tbody> 
+                <tr data-ng-repeat="d in drafts"> 
+                    <td data-ng-bind="d.draftName"></td> 
+                    <td data-ng-bind="d.commissioner.displayName"></td>
+                    <td sg-time-until-draft date-time-from="{{d.draftDate}}"></td> 
+   	            <td><sgshowgobutton date-time-from="{{d.draftDate}}" label="Enter" whereto="/#!/drafts/{{d._id}}"></sgshowgobutton></td>
+                </tr> 
+            </tbody>  
+        </table>
+</section>

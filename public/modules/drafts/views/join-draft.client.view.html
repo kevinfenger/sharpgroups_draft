@@ -1,0 +1,16 @@
+<section class="row" data-ng-controller="JoinController" data-ng-init="find()">
+	<div class="page-header">
+            <h1>Join A Draft</h1>
+	</div>
+        <div class="list-group">
+                <li data-ng-repeat="d in drafts" class="list-group-item">
+                        <small class="list-group-item-text">
+                                Draft Name
+                                <span data-ng-bind="d.draftName"></span>
+                                by
+                                <span data-ng-bind="d.commissioner.displayName"></span>
+                        </small>
+   	                <button class="btn btn-primary" ng-click="addUserToDraft(d)">Join</button>
+                </li>
+        </div>
+</section>
