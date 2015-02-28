@@ -11,8 +11,8 @@ var express = require('express'),
 	methodOverride = require('method-override'),
 	cookieParser = require('cookie-parser'),
 	helmet = require('helmet'),
-        socketio = require('socket.io'),
         http = require('http'), 
+        socketio = require('socket.io'),
 	passport = require('passport'),
 	mongoStore = require('connect-mongo')({
 		session: session
@@ -144,8 +144,10 @@ module.exports = function(db) {
 
         var server = http.createServer(app); 
         var io = socketio.listen(server); 
+        var sio = require('../app/controllers/socket.server.controller.js');
+        sio.startIO(io); 
         app.set('socketio', io); 
         app.set('server', server);
-
+        
 	return app;
 };

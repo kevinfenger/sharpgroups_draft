@@ -14,8 +14,24 @@
                     <td data-ng-bind="d.draftName"></td> 
                     <td data-ng-bind="d.commissioner.displayName"></td>
                     <td sg-time-until-draft date-time-from="{{d.draftDate}}"></td> 
-   	            <td><sgshowgobutton date-time-from="{{d.draftDate}}" label="Enter" whereto="/#!/drafts/{{d._id}}"></sgshowgobutton></td>
+   	            <td><sgshowgobutton date-time-from="{{d.draftDate}}" label="Enter" ng-click="enterDraft(d)"></sgshowgobutton></td>
                 </tr> 
             </tbody>  
         </table>
+        <div class="container-fluid">
+           <div class="row"> 
+              <div class="col-md-3">Draft Name</div> 
+              <div class="col-md-3">Commissioner</div> 
+              <div class="col-md-3">Starts In</div> 
+              <div class="col-md-3">Actions</div> 
+           </div> 
+              <div class="row" data-ng-repeat="d in drafts">
+                 <div class="col-md-3" data-ng-bind="d.draftName"></div> 
+                 <div class="col-md-3" data-ng-bind="d.commissioner.displayName"></div> 
+                 <div class="col-md-3" sg-time-until-draft date-time-from="{{d.draftDate}}"></div> 
+                 <div class="col-md-3"><sgshowgobutton date-time-from="{{d.draftDate}}" label="Enter" whereto="/#!/drafts/{{d._id}}"></sgshowgobutton></div> 
+              </div> 
+           </div>
+        </div> 
+</div>
 </section>

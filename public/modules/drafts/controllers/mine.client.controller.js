@@ -12,6 +12,15 @@ angular.module('drafts').controller('MyDraftsController', ['$scope', '$http', '$
                     $scope.error = response.message;
                 });
             };
+        $scope.enterDraft = function(draft) {
+//                $http.post('/draft/enter', draft).success(function(response) { 
+  //                 console.log(response); 
+                   $location.path('drafts/'+draft.id);
+    //            }).error(function(response) {
+      //              console.log(response); 
+        //            $scope.error = response.message;
+          //      });
+            };
     } 
 ])
 .directive('sgTimeUntilDraft', function($interval) { 

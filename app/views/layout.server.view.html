@@ -54,11 +54,13 @@
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
 	</script>
-
 	<!--Application JavaScript Files-->
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>
 	{% endfor %} 
 
+        <!-- Socket.io-->
+        <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+        <script type="text/javascript" src="/lib/angular-socket-io/socket.min.js"></script>
 	{% if process.env.NODE_ENV === 'development' %}
 	<!--Livereload script rendered -->
 	<!--script type="text/javascript" src="http://localhost:35729/livereload.js"></script-->

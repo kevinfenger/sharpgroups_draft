@@ -10,6 +10,8 @@ module.exports = function(app) {
             .put(users.requiresLogin, draft.update); 
 	app.route('/draft/create')
             .post(users.requiresLogin, draft.create);
+//        app.route('/draft/enter') 
+  //          .post(users.requiresLogin, draft.enter); 
 	app.route('/draft/join')
             .post(users.requiresLogin, draft.join);
         app.route('/draft/findUserDrafts') 

@@ -1,0 +1,80 @@
+<section class="row" data-ng-controller="AuctionController">
+        <br />
+        <div class="container"> 
+           <div class="row"> 
+                <div class="col-md-7 column"> 
+                    <div class="row"> 
+                       <div class="panel panel-default" style="min-height:750px; margin-right:22px; background: url(/modules/drafts/img/hardwood_background.png)">
+                          <div class="panel-heading">
+                             <h3 class="panel-title">The Draft</h3>
+                          </div>
+                          <div class="panel-body text-center">
+                             <h2><b>Team Up For Auction</b></h2>
+                             <br /> 
+                             <img src="/modules/drafts/img/air_force_falcons_logo.png" class="center-block">
+                             <h3><b>#1 Seed West Division</b></h3>
+                             <br />
+                             <h2><b>Current Bid</b></h2>
+                             <h1><b>300</b></h1>
+                             
+                          </div>
+                       </div>
+                    </div>
+                    <div class="row control-row"> 
+                       <div class="col-md-3 column">
+                           <h4 class="sharps-heading">Sharps Left</h4> 
+                           <span class="sharp-info"><b>{{sharpsBeforeBid}}</b></span>
+                       </div> 
+                       <div class="col-md-9 column controls-no-heading">
+                          <button type="button" class="btn btn-large btn-success"><i class='glyphicon glyphicon-chevron-up'></i></button>
+                          <button type="button" class="btn btn-large btn-danger"><i class='glyphicon glyphicon-chevron-down'></i></button>
+                          <button type="button" class="btn btn-large btn-success">Min</button>
+                          <button type="button" class="btn btn-large btn-success">Max</button>
+                          <span class="increase-bid">Increase Bid By <b>{{increaseBidAmount}}</b> Sharps</span>
+                          <button type="button" class="btn btn-large btn-primary raised"><i class='glyphicon glyphicon-hand-up'></i></button>
+                       </div>
+                    </div>
+                </div> 
+                <div class="col-md-5 column"> 
+                    <div class="row">
+                       <div class="panel panel-default" style="min-height:400px">
+                          <div class="panel-heading">
+                             <h3 class="panel-title">Draft Information</h3>
+                          </div>
+                          <div class="panel-body">
+                             <tabset>
+                                <tab heading="Teams Remaining">Static content</tab> 
+                                <tab heading="Drafters">Static content</tab> 
+                                <tab heading="Draft Log">Static content</tab> 
+                                <tab heading="My Team">Static content</tab> 
+                             </tabset>
+                          </div>
+                       </div>
+                    </div>
+                    <div class="row"> 
+                       <div class="panel panel-default chat-panel" style="min-height:400px">
+                          <div class="panel-heading">
+                             <h3 class="panel-title">Chat</h3>
+                          </div>
+ <div class="panel-body"> 
+    <ul class="pages"> 
+    <li class="page">
+      <div class="chat-area">
+        <ul sg-scroll-to-bottom class="messages">
+           <li ng-repeat="c in chats"> 
+                <span class="username">{{c.name}}</span> 
+                <span class="message-body">{{c.text}}</span>
+           </li>  
+        </ul>
+      </div>
+      <input ng-keydown="chatKeyDown($event)" class="input-message" ng-model="chatInput" placeholder="Smack On..."/>
+    </li>
+    </ul> 
+</div> 
+                       </div>
+                    </div> 
+                </div>
+           </div> 
+        </div> 
+          
+</section>

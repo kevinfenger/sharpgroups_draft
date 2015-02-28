@@ -6,7 +6,6 @@ angular.module('drafts').controller('JoinController', ['$scope', '$http', '$loca
         if (!$scope.authentication.user) 
             $location.path('signin');
         $scope.addUserToDraft = function(draft) {
-                console.log(draft);  
                 $http.post('/draft/join', draft).success(function(response) { 
                    console.log(response); 
                 }).error(function(response) {

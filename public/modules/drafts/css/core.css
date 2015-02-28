@@ -1,0 +1,103 @@
+.btn-circle {
+  text-align: center;
+  font-size: 20px;
+  line-height: 40px;
+  border-radius: 50%;
+}
+.btn-primary.raised {
+    box-shadow: 0 3px 0 0 #007299;
+}
+.btn-primary.raised:active, .btn-primary.raised.active {
+    background: #33a6cc;
+    box-shadow: none;
+    margin-bottom: -3px;
+    margin-top: 3px;
+}
+.btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0 none;
+}
+.increase-bid { 
+    font-size: 15px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 7px
+}
+.sharp-info { 
+    font-size: 25px;
+}
+.controls-no-heading { 
+    margin-top: 30px; 
+}
+.sharps-heading { 
+    margin-bottom: 10px;
+}
+.control-row { 
+    border: 1px solid black;
+    fill: black;
+    background-color: rgb(10, 6, 6);
+    padding: 18px;
+    border-radius: 7px;
+    margin-right: 6px;
+    color: white;
+}
+.panel-default .nav-tabs a { 
+   cursor: pointer;
+}
+.chat-panel { 
+   height: 100%; 
+   position: absolute; 
+   width: 100%;
+}
+.chat-panel ul { 
+  list-style: none;
+  word-wrap: break-word;
+}
+.chat-panel .page { 
+    height: 100%; 
+    position: absolute; 
+    width: 100%; 
+}
+.chat-panel .panel-body { 
+   padding: 0 !important; 
+}
+.chat-panel .chat-area { 
+  height: 100%;
+  padding-bottom: 60px;
+}
+.chat-panel .messages { 
+  height: 100%;
+  margin: 0;
+  overflow-y: scroll;
+  padding: 10px 20px 10px 20px;
+}
+.chat-panel .pages { 
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+.chat-panel .message.typing .message-body { 
+  color: gray;
+}
+.chat-panel .messages { 
+  font-size: 150%; 
+}
+.chat-panel .username { 
+  color: rgb(88, 220, 0);
+  float: left;
+  font-weight: 700;
+  overflow: hidden;
+  padding-right: 15px;
+  text-align: right;
+}
+.input-message { 
+  border: 10px solid #000;
+  bottom: 0;
+  height: 60px;
+  left: 0;
+  outline: 0; 
+  padding-left: 10px;
+  position: absolute;
+  right: 0;
+  width: 100%;
+}

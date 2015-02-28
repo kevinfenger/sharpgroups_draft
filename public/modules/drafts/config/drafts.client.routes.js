@@ -14,6 +14,10 @@ angular.module('drafts').config(['$stateProvider',
              state('myDrafts', { 
                  url: '/drafts/mine',
                  templateUrl: 'modules/drafts/views/my-drafts.client.view.html'  
-             });  
+             }).  
+             state('EnterDraft', {
+	         url: '/drafts/:draftId',
+		 templateUrl: 'modules/drafts/views/draft.client.view.html'
+	     });
         }
 ]); 

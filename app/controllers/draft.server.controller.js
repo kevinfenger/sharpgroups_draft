@@ -90,6 +90,12 @@ exports.join = function(req, res) {
         }
     });   
 };
+
+//exports.enter = function(req, res) { 
+//    var sio = req.app.get('socketio'); 
+//    sio.sockets.emit('draft.entered', req.user);
+//    res.jsonp({success : 1}); 
+//};
 /*exports.list = function(req, res) {
         console.log('test'); 
     var draft = new Draft();  
