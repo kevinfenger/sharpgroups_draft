@@ -34,6 +34,7 @@
 .controls { 
     background-color: rgb(10, 6, 6);
     color: white;
+    width: 100%;
 }
 .panel-default .nav-tabs a { 
    cursor: pointer;
@@ -86,6 +87,7 @@
 }
 .main-panel { 
    height: 100%;
+   width: 100%;
    background: url(/modules/drafts/img/hardwood_background.png);
 }
 .input-message { 

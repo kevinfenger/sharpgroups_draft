@@ -13,7 +13,7 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
         $scope.infoCollapsed = false; 
         $scope.chatBodyHeight = minHeight; 
         $scope.chatWrapperHeight = minHeight; 
-        $scope.infoWrapperHeight = minHeight; 
+        $scope.infoWrapperHeight = '450px'; 
         $scope.drafters = [];
         $scope.chats = []; 
         $scope.username = $scope.authentication.user.firstName + ' ' + $scope.authentication.user.lastName;
@@ -59,7 +59,7 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
         }; 
         $scope.maxInfo = function() { 
            $scope.infoCollapsed = false; 
-           $scope.infoWrapperHeight = minHeight; 
+           $scope.infoWrapperHeight = '450px'; 
         }; 
     } 
 ])

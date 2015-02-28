@@ -1,120 +1,117 @@
 <section class="row" data-ng-controller="AuctionController">
-        <br />
-        <div class="container"> 
-           <div class="row"> 
-                <div class="col-md-7 column"> 
-                    <div class="row"> 
-                       <div draggable-element class="panel panel-default main-panel right22">
-                          <div class="panel-heading">
-                             <h3 class="panel-title">The Draft</h3>
-                          </div>
-                          <div class="panel-body text-center">
-                             <h2><b>Team Up For Auction</b></h2>
-                             <br /> 
-                             <img src="/modules/drafts/img/air_force_falcons_logo.png" class="center-block">
-                             <h3><b>#1 Seed West Division</b></h3>
-                             <br />
-                             <h2><b>Current Bid</b></h2>
-                             <h1><b>300</b></h1>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="row">
-                      <div draggable-element class="panel panel-default right22 controls">
-                        <div class="panel-heading">
-                          <h3 class="panel-title">Your Controls</h3>
-                        </div>
-                        <div class="panel-body"> 
-                        <div class="col-md-3 col-xs-6 column text-center"> 
-                        <div class="row"> 
-                          <div class="btn-group" role="group"> 
-                            <button type="button" class="btn btn-large btn-success"><i class='glyphicon glyphicon-chevron-up'></i></button>
-                            <button type="button" class="btn btn-large btn-danger"><i class='glyphicon glyphicon-chevron-down'></i></button>
-                          </div> 
-                        </div>   
-                        <div class="row top5"> 
-                          <div class="btn-group" role="group"> 
-                            <button type="button" class="btn btn-large btn-success">Min</button>
-                            <button type="button" class="btn btn-large btn-success">Max</button>
-                          </div> 
-                        </div>   
-                      </div>
-                      <div class="col-md-3 col-xs-6 column text-center">
-                        <div class="row">
-                          <span class="font130"><b>Bid Amount</b></span> 
-                        </div> 
-                        <div class="row top5">
-                          <span class="font275"><b>{{increaseBidAmount}}</b></span>
-                        </div> 
-                      </div>
-                      <div class="col-md-3 col-xs-6 column text-center"> 
-                        <div class="row">
-                          <span class="font130"><b>Place Bid</b></span> 
-                        </div> 
-                        <div class="row top15">
-                          <button type="button" class="btn btn-large btn-primary raised"><i class='glyphicon glyphicon-hand-up'></i></button>
-                        </div> 
-                      </div>
-                      <div class="col-md-3 col-xs-6 column text-center"> 
-                        <div class="row">
-                          <span class="font130"><b>Your Sharps</b></span> 
-                        </div> 
-                        <div class="row top5">
-                          <span class="font275"><b>{{sharpsBeforeBid}}</b></span>
-                        </div> 
-                      </div>
-                    </div> 
-                    </div>  
-                    </div> 
+  <br />
+  <div class="container"> 
+    <div class="row"> 
+      <div draggable-element class="col-md-7 column"> 
+        <div class="panel panel-default main-panel right22">
+          <div class="panel-heading">
+            <h3 class="panel-title">The Draft</h3>
+          </div>
+          <div class="panel-body text-center">
+            <h2><b>Team Up For Auction</b></h2>
+            <br /> 
+            <img src="/modules/drafts/img/air_force_falcons_logo.png" class="center-block">
+            <h3><b>#1 Seed West Division</b></h3>
+            <br />
+            <h2><b>Current Bid</b></h2>
+            <h1><b>300</b></h1>
+          </div>
+        </div>
+      </div> 
+      <div draggable-element class="col-md-5 column"> 
+        <div class="panel panel-default" ng-style="{'min-height': infoWrapperHeight}">
+          <div class="panel-heading clearfix">
+            <h3 class="panel-title pull-left">Draft Information</h3>
+            <div class="btn-group pull-right"> 
+              <button type="button" class="btn btn-xs" ng-click="collapseInfo()"><i class='glyphicon glyphicon-minus'></i></button>
+              <button type="button" class="btn btn-xs" ng-click="maxInfo()"><i class='glyphicon glyphicon-plus'></i></button>
+            </div> 
+          </div>
+          <div class="panel-body" collapse="infoCollapsed">
+            <tabset>
+              <tab heading="Teams Remaining">Static content</tab> 
+              <tab heading="Drafters">Static content</tab> 
+              <tab heading="Draft Log">Static content</tab> 
+              <tab heading="My Team">Static content</tab> 
+            </tabset>
+          </div>
+        </div>
+      </div>
+    </div> 
+    <div class="row">
+      <div draggable-element class="col-md-7 column"> 
+        <div class="panel panel-default right22 controls">
+          <div class="panel-heading">
+            <h3 class="panel-title">Your Controls</h3>
+          </div>
+          <div class="panel-body"> 
+            <div class="col-md-3 col-xs-6 column text-center"> 
+              <div class="row"> 
+                <div class="btn-group" role="group"> 
+                  <button type="button" class="btn btn-large btn-success"><i class='glyphicon glyphicon-chevron-up'></i></button>
+                  <button type="button" class="btn btn-large btn-danger"><i class='glyphicon glyphicon-chevron-down'></i></button>
                 </div> 
-                <div class="col-md-5 column"> 
-                    <div class="row">
-                       <div draggable-element class="panel panel-default" ng-style="{'min-height': infoWrapperHeight}">
-                          <div class="panel-heading clearfix">
-                             <h3 class="panel-title pull-left">Draft Information</h3>
-                             <div class="btn-group pull-right"> 
-                                <button type="button" class="btn btn-xs" ng-click="collapseInfo()"><i class='glyphicon glyphicon-minus'></i></button>
-                                <button type="button" class="btn btn-xs" ng-click="maxInfo()"><i class='glyphicon glyphicon-plus'></i></button>
-                             </div> 
-                          </div>
-                          <div class="panel-body" collapse="infoCollapsed">
-                             <tabset>
-                                <tab heading="Teams Remaining">Static content</tab> 
-                                <tab heading="Drafters">Static content</tab> 
-                                <tab heading="Draft Log">Static content</tab> 
-                                <tab heading="My Team">Static content</tab> 
-                             </tabset>
-                          </div>
-                       </div>
-                    </div>
-                    <div class="row"> 
-                       <div draggable-element class="panel panel-default chat-panel" ng-style="{'min-height': chatWrapperHeight}">
-                          <div class="panel-heading clearfix">
-                             <h3 class="panel-title pull-left">Chat</h3>
-                             <div class="btn-group pull-right"> 
-                                <button type="button" class="btn btn-xs" ng-click="collapseChat()"><i class='glyphicon glyphicon-minus'></i></button>
-                                <button type="button" class="btn btn-xs" ng-click="maxChat()"><i class='glyphicon glyphicon-plus'></i></button>
-                             </div> 
-                          </div>
-                          <div class="panel-body" collapse="chatCollapsed" ng-style="{'height': chatBodyHeight}"> 
-                            <ul class="pages"> 
-                              <li class="page">
-                                <div class="chat-area">
-                                  <ul sg-scroll-to-bottom class="messages">
-                                    <li ng-repeat="c in chats"> 
-                                      <span class="username">{{c.name}}</span> 
-                                      <span class="message-body">{{c.text}}</span>
-                                    </li>  
-                                  </ul>
-                                </div>
-                               <input ng-keydown="chatKeyDown($event)" class="input-message" ng-model="chatInput" placeholder="Smack On..."/>
-                             </li>
-                           </ul> 
-                         </div> 
-                       </div>
-                    </div> 
+              </div>   
+              <div class="row top5"> 
+                <div class="btn-group" role="group"> 
+                  <button type="button" class="btn btn-large btn-success">Min</button>
+                  <button type="button" class="btn btn-large btn-success">Max</button>
+                </div> 
+              </div>   
+            </div>
+            <div class="col-md-3 col-xs-6 column text-center">
+              <div class="row">
+                <span class="font130"><b>Bid Amount</b></span> 
+              </div> 
+              <div class="row top5">
+                <span class="font275"><b>{{increaseBidAmount}}</b></span>
+              </div> 
+            </div>
+            <div class="col-md-3 col-xs-6 column text-center"> 
+              <div class="row">
+                <span class="font130"><b>Place Bid</b></span> 
+              </div> 
+              <div class="row top15">
+                <button type="button" class="btn btn-large btn-primary raised"><i class='glyphicon glyphicon-hand-up'></i></button>
+              </div> 
+            </div>
+            <div class="col-md-3 col-xs-6 column text-center"> 
+              <div class="row">
+                <span class="font130"><b>Your Sharps</b></span> 
+              </div> 
+              <div class="row top5">
+                <span class="font275"><b>{{sharpsBeforeBid}}</b></span>
+              </div> 
+            </div>
+          </div> 
+	</div> 
+      </div>  
+      <div draggable-element class="col-md-5 column"> 
+        <div class="panel panel-default chat-panel" ng-style="{'min-height': chatWrapperHeight}">
+          <div class="panel-heading clearfix">
+            <h3 class="panel-title pull-left">Chat</h3>
+            <div class="btn-group pull-right"> 
+              <button type="button" class="btn btn-xs" ng-click="collapseChat()"><i class='glyphicon glyphicon-minus'></i></button>
+              <button type="button" class="btn btn-xs" ng-click="maxChat()"><i class='glyphicon glyphicon-plus'></i></button>
+            </div> 
+          </div>
+          <div class="panel-body" collapse="chatCollapsed" ng-style="{'height': chatBodyHeight}"> 
+            <ul class="pages"> 
+              <li class="page">
+                <div class="chat-area">
+                  <ul sg-scroll-to-bottom class="messages">
+                    <li ng-repeat="c in chats"> 
+                      <span class="username">{{c.name}}</span> 
+                      <span class="message-body">{{c.text}}</span>
+                    </li>  
+                  </ul>
                 </div>
-           </div> 
-        </div> 
-          
+                <input ng-keydown="chatKeyDown($event)" class="input-message" ng-model="chatInput" placeholder="Smack On..."/>
+              </li>
+            </ul> 
+          </div> 
+        </div>
+      </div> 
+    </div> 
+  </div> 
 </section>
