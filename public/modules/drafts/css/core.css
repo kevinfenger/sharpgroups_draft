@@ -31,20 +31,14 @@
 .sharps-heading { 
     margin-bottom: 10px;
 }
-.control-row { 
-    border: 1px solid black;
-    fill: black;
+.controls { 
     background-color: rgb(10, 6, 6);
-    padding: 18px;
-    border-radius: 7px;
-    margin-right: 6px;
     color: white;
 }
 .panel-default .nav-tabs a { 
    cursor: pointer;
 }
 .chat-panel { 
-   height: 100%; 
    position: absolute; 
    width: 100%;
 }
@@ -90,6 +84,10 @@
   padding-right: 15px;
   text-align: right;
 }
+.main-panel { 
+   height: 100%;
+   background: url(/modules/drafts/img/hardwood_background.png);
+}
 .input-message { 
   border: 10px solid #000;
   bottom: 0;
@@ -101,3 +99,14 @@
   right: 0;
   width: 100%;
 }
+.font130 { font-size:130%; }
+.font175 { font-size:175%; }
+.font275 { font-size:275%; }
+.top5 { margin-top:5px; }
+.top7 { margin-top:7px; }
+.top10 { margin-top:10px; }
+.top15 { margin-top:15px; }
+.top17 { margin-top:17px; }
+.top20 { margin-top:20px; }
+.top30 { margin-top:30px; }
+.right22 { margin-right:22px; }
