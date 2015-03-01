@@ -6,11 +6,10 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
         if (!$scope.authentication.user) 
             $location.path('signin');
         var minHeight = '350px'; 
-        $scope.increaseBidAmount = 10;  
-        $scope.sharpsBeforeBid = 2500;  
-        $scope.sharpsAfterBid = 2500;  
+        $scope.newBidAmount = 10;  
+        $scope.sharpsLeft = 2500;  
         $scope.chatCollapsed = false;
-        $scope.infoCollapsed = false; 
+        $scope.infoCollapsed = false;
         $scope.chatBodyHeight = minHeight; 
         $scope.chatWrapperHeight = minHeight; 
         $scope.infoWrapperHeight = '450px'; 
@@ -31,6 +30,10 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
         });
         Socket.on('user left', function(u) { 
             $scope.chats.push({ name : u.username, text : ' has left the draft' }); 
+        }); 
+        Socket.on('new item', function(data) {
+            console.log(data);  
+            $scope.currentItem = { headline : data.headline, text : data.text, image : data.image, seed : data.seed, division : data.division, bid : data.bid };
         });  
         $scope.chatKeyDown = function(keyDownEvent) { 
             if(keyDownEvent.keyCode === 13) {
@@ -43,6 +46,22 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
                 }
             }  
         };
+        $scope.incrementBid = function() { 
+
+        }; 
+        $scope.decrementBid = function() { 
+
+        }; 
+        $scope.minBid = function() { 
+
+        }; 
+        $scope.maxBid = function() { 
+
+        }; 
+        $scope.executeBid = function() {
+            console.log('test'); 
+            Socket.emit('make bid', 'test'); 
+        }; 
         $scope.collapseChat = function() { 
            $scope.chatCollapsed = true;
            $scope.chatWrapperHeight = '0px'; 
