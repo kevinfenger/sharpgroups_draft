@@ -15,9 +15,15 @@ angular.module('drafts').config(['$stateProvider',
                  url: '/drafts/mine',
                  templateUrl: 'modules/drafts/views/my-drafts.client.view.html'  
              }).  
-             state('EnterDraft', {
+             state('enterDraft', {
 	         url: '/drafts/:draftId',
-		 templateUrl: 'modules/drafts/views/draft.client.view.html'
+		 templateUrl: 'modules/drafts/views/draft.client.view.html',
+                 controller: 'AuctionController',
+                 resolve: { 
+                    draft: function($stateParams,Drafts) { 
+                        return Drafts.get({draftId : $stateParams.draftId}).$promise; 
+                    } 
+                 }
 	     });
         }
 ]); 

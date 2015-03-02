@@ -1,29 +1,70 @@
 'use strict';
 
-angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$window', '$location', 'Authentication', 'Socket',
-    function($scope, $http, $window, $location, Authentication, Socket) {
+angular.module('drafts').controller('AuctionController', ['$scope', '$stateParams', '$http', '$window', '$filter', '$location', 'Authentication', 'Socket', 'draft',
+    function($scope, $stateParams, $http, $window, $filter, $location, Authentication, Socket, draft, teamId) {
 	$scope.authentication = Authentication;
         if (!$scope.authentication.user) 
             $location.path('signin');
         var minHeight = '350px'; 
-        $scope.newBidAmount = 10;  
-        $scope.sharpsLeft = 2500;  
+        var minBid = $scope.newBidAmount = draft.minSharpBidIncrease;
         $scope.chatCollapsed = false;
         $scope.infoCollapsed = false;
         $scope.chatBodyHeight = minHeight; 
         $scope.chatWrapperHeight = minHeight; 
-        $scope.infoWrapperHeight = '450px'; 
-        $scope.drafters = [];
-        $scope.chats = []; 
+        $scope.infoWrapperHeight = '450px';
+        $scope.soldState = false;
+        $scope.auctionStarted = false; 
+        $scope.auctionTextStyle = '';  
+        $scope.currentItem = null;  
+        $scope.chats = [];
+        $scope.draft = draft;
+        $scope.team = $filter('filter')(draft.fantasyTeams, { owner : $scope.authentication.user._id })[0];
         $scope.username = $scope.authentication.user.firstName + ' ' + $scope.authentication.user.lastName;
 
-        Socket.emit('add user', { username : $scope.username, user_id : $scope.authentication.user._id }); 
+        Socket.emit('add user', { username : $scope.username, userId : $scope.authentication.user._id }); 
         
         Socket.addListener('stop typing', function(user) {
             console.log(user);  
         });
+        Socket.addListener('auction has started', function(user) {
+            $scope.auctionStarted = true;   
+        });
         Socket.addListener('new message', function(data) { 
             $scope.chats.push({ name : data.username, text : data.message }); 
+        });
+        Socket.addListener('auction status', function(data) { 
+            $scope.currentItem = data; 
+            $scope.newBidAmount = data.bid + minBid;
+            if ($scope.currentItem.state === -2) {
+               $scope.auctionText = 'waiting for an item'; 
+            }
+            if ($scope.currentItem.state === -1) {
+               $scope.auctionTextStyle = 'rgb(173,127,67)';  
+               $scope.auctionText = data.name + ' is the new item'; 
+            }
+            if ($scope.currentItem.state === 0) {
+               $scope.auctionTextStyle = 'rgb(95,57,57)';  
+               $scope.auctionText = data.bidder + ' is the new bidder!'; 
+            }
+            if ($scope.currentItem.state === 1) {
+               $scope.auctionTextStyle = 'green';  
+               $scope.auctionText = 'Going Once!'; 
+            }
+            if ($scope.currentItem.state === 2) { 
+               $scope.auctionTextStyle = 'blue';  
+               $scope.auctionText = 'Going Twice!!'; 
+            }
+            if ($scope.currentItem.state === 3) {
+               $scope.auctionTextStyle = 'red';  
+               $scope.auctionText = 'Sold!!!'; 
+               // to prevent any new bids, while we do the DB operations on the server
+               $scope.soldState = true;  
+            }
+        }); 
+        Socket.addListener('sold', function(data) {
+             if (data._id === $scope.team._id) { 
+                $scope.team = data;  
+             } 
         });  
         Socket.on('user joined', function(u) { 
             $scope.chats.push({ name : u.username, text : ' has entered the draft' }); 
@@ -32,8 +73,10 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
             $scope.chats.push({ name : u.username, text : ' has left the draft' }); 
         }); 
         Socket.on('new item', function(data) {
-            console.log(data);  
-            $scope.currentItem = { headline : data.headline, text : data.text, image : data.image, seed : data.seed, division : data.division, bid : data.bid };
+            $scope.auctionTextStyle = '{}';  
+            $scope.currentItem = data;
+            $scope.soldState = false;  
+            $scope.newBidAmount = data.bid + minBid; 
         });  
         $scope.chatKeyDown = function(keyDownEvent) { 
             if(keyDownEvent.keyCode === 13) {
@@ -47,21 +90,30 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
             }  
         };
         $scope.incrementBid = function() { 
-
+            $scope.newBidAmount = $scope.newBidAmount >= $scope.currentItem.bid ? $scope.newBidAmount + minBid : $scope.currentItem.bid + minBid; 
         }; 
         $scope.decrementBid = function() { 
-
+            $scope.newBidAmount = ($scope.newBidAmount - minBid) > $scope.currentItem.bid ? ($scope.newBidAmount - minBid) : $scope.currentItem.bid + minBid; 
         }; 
         $scope.minBid = function() { 
-
+           $scope.newBidAmount = $scope.currentItem.bid + minBid; 
         }; 
         $scope.maxBid = function() { 
-
+           $scope.newBidAmount = $scope.team.sharps; 
         }; 
         $scope.executeBid = function() {
-            console.log('test'); 
-            Socket.emit('make bid', 'test'); 
+            Socket.emit('make bid', { bid : $scope.newBidAmount, username : $scope.username, userId : $scope.authentication.user._id, teamId : $scope.team._id });
         }; 
+        $scope.findOne = function() { 
+            $http.get('/drafts/' + $stateParams.draftId). 
+                success(function(draft) { 
+                   $scope.draft = draft;
+                }). 
+                error(function(data) { 
+                   console.log(data); 
+                });  
+        }; 
+       
         $scope.collapseChat = function() { 
            $scope.chatCollapsed = true;
            $scope.chatWrapperHeight = '0px'; 
@@ -79,7 +131,8 @@ angular.module('drafts').controller('AuctionController', ['$scope', '$http', '$w
         $scope.maxInfo = function() { 
            $scope.infoCollapsed = false; 
            $scope.infoWrapperHeight = '450px'; 
-        }; 
+        };
+         
     } 
 ])
 .directive('sgScrollToBottom', function($interval) { 

@@ -11,4 +11,3 @@ angular.module('drafts').factory('Drafts', ['$resource',
                 });
         }
 ]);
-

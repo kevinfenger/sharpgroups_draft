@@ -42,6 +42,7 @@
 .chat-panel { 
    position: absolute; 
    width: 100%;
+   top: -100px;
 }
 .chat-panel ul { 
   list-style: none;
@@ -88,7 +89,11 @@
 .main-panel { 
    height: 100%;
    width: 100%;
+   min-height: 550px;
    background: url(/modules/drafts/img/hardwood_background.png);
+}
+.main-panel .media { 
+  margin-left: 85px; 
 }
 .input-message { 
   border: 10px solid #000;

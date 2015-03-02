@@ -15,5 +15,9 @@ module.exports = function(app) {
 	app.route('/draft/join')
             .post(users.requiresLogin, draft.join);
         app.route('/draft/findUserDrafts') 
-            .get(users.requiresLogin, draft.findUserDrafts); 
+            .get(users.requiresLogin, draft.findUserDrafts);
+        app.route('/drafts/:draftId') 
+            .get(users.requiresLogin, draft.canEnter, draft.getInformation); 
+        
+        app.param('draftId', draft.draftById);  
 };

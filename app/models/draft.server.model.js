@@ -46,6 +46,14 @@ var DraftSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     }],
+    fantasyTeams: [{
+        type: Schema.ObjectId,
+        ref: 'FantasyTeam'
+    }],
+    items: [{
+        type: Schema.ObjectId,
+        ref: 'FantasyPlayer'
+    }],
     startingSharps: { 
         type: Number, 
         default: 2500
