@@ -1,0 +1,16 @@
+<section class="row" data-ng-controller="JoinController" data-ng-init="find()">
+	<div class="page-header">
+            <h1>Join A Fantasy Game</h1>
+	</div>
+        <div class="list-group">
+                <li data-ng-repeat="f in fantasygames" class="list-group-item">
+                        <small class="list-group-item-text">
+                                Draft Name
+                                <span data-ng-bind="f.fantasyGameName"></span>
+                                by
+                                <span data-ng-bind="f.commissioner.displayName"></span>
+                        </small>
+   	                <button class="btn btn-primary" ng-click="addUserToFantasyGame(d)">Join</button>
+                </li>
+        </div>
+</section>

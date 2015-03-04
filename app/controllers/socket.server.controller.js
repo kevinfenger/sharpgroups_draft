@@ -19,7 +19,7 @@ exports.startIO = function(io) {
     var current = new Date().getTime();
     var draftTime = moment(); 
     var currentTime = moment();
-    draftTime.add(2, 'minutes');   
+    draftTime.add(1, 'minutes');   
     var currentItem = { id : null, 
                         name : 'Test Object', 
                         headline : 'your auction will start shortly', 
@@ -65,6 +65,7 @@ exports.startIO = function(io) {
        // set current item and emit to all those listening
        if (allDraftItems.length > 0) {  
           var newItem = allDraftItems.pop();
+          console.log(allDraftItems); 
           currentItem.id = newItem._id; 
           currentItem.name = newItem.name; 
           currentItem.headline = 'Teams are up for bidding'; 
@@ -132,6 +133,9 @@ exports.startIO = function(io) {
                 numUsers: numUsers
             }); 
             //socket.emit('new item', currentItem);  
+            if (draftTime.diff(currentTime) <= 0) { 
+               io.sockets.emit('auction has started');  
+            }
             socket.emit('auction status', currentItem);  
         });
         socket.on('typing', function () {

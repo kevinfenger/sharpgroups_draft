@@ -1,0 +1,29 @@
+<section class="row" data-ng-controller="MyFantasyGamesController" data-ng-init="findUserFantasyGames()">
+	<div class="page-header">
+            <h1>My Drafts</h1>
+	</div>
+        <table class="table table-striped"> 
+            <thead> 
+                <th>Draft Name</th> 
+                <th>Commissioner</th> 
+                <th>Starts In</th> 
+                <th></th> 
+            </thead>
+            <tbody> 
+                <tr data-ng-repeat="f in fantasygames"> 
+                </tr> 
+            </tbody>  
+        </table>
+        <div class="container-fluid">
+           <div class="row"> 
+              <div class="col-md-3">Draft Name</div> 
+              <div class="col-md-3">Commissioner</div> 
+              <div class="col-md-3">Starts In</div> 
+              <div class="col-md-3">Actions</div> 
+           </div> 
+              <div class="row" data-ng-repeat="f in fantasygames">
+              </div> 
+           </div>
+        </div> 
+</div>
+</section>

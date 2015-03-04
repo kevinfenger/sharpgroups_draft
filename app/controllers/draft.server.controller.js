@@ -107,15 +107,6 @@ exports.join = function(req, res) {
              // create and add a FantasyTeam to this draft
              var ft = new FantasyTeam({ owner : userId, sharps : doc.startingSharps });
              ft.save(); 
-             var fp1 = new FantasyPlayer({ division : 'West', image : '/modules/drafts/img/air_force_falcons_logo.png', name : 'Air Force', seed : 1});
-             fp1.save(); 
-             doc.items.push(fp1);  
-             fp1 = new FantasyPlayer({ division : 'West', image : '/modules/drafts/img/acu_wildcats_logo.png', name : 'Wildcats', seed : 15}); 
-             fp1.save(); 
-             doc.items.push(fp1);  
-             fp1 = new FantasyPlayer({ division : 'West', image : '/modules/drafts/img/aic_yellowjackets_logo.png', name : 'Yellowjackets', seed : 12}); 
-             fp1.save(); 
-             doc.items.push(fp1);  
              doc.fantasyTeams.push(ft._id); 
              doc.save(); 
           } 

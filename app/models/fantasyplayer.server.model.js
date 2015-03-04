@@ -28,10 +28,4 @@ var FantasyPlayerSchema = new Schema({
     toJSON: { virtuals: true }
 }); 
 
-
-//DraftSchema.methods.findDraftsByType = function(dt, cb) { 
-//    return this.model('Draft').find({ draftType: dt }, cb); 
-//    return 'test'; 
-//}; 
-
 mongoose.model('FantasyPlayer', FantasyPlayerSchema);

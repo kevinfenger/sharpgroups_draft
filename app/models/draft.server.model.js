@@ -4,10 +4,10 @@ var mongoose = require('mongoose'),
       Schema = mongoose.Schema;
 
 var DraftSchema = new Schema({
-    commissioner: {
+/*    commissioner: {
         type: Schema.ObjectId,
         ref: 'User'
-    },
+    },*/ 
     created: {
         type: Date,
         default: Date.now
@@ -17,31 +17,31 @@ var DraftSchema = new Schema({
         required: 'Your draft needs a start time',
         default: Date.now
     },
-    draftName: {
+/*    draftName: {
         type: String,
         required: 'Please give your draft a name',
         trim: true
-    }, 
+    },  */
     draftType: { 
         type: Number, 
         default: 0
     },
-    leaguePassword: {
+/*    leaguePassword: {
         type: String,
         trim: true
     }, 
     maxUsers: { 
         type: Number, 
         default: 8
-    },
+    },*/ 
     minSharpBidIncrease: { 
         type: Number, 
         default: 10
     },
-    isPrivate: { 
+/*    isPrivate: { 
         type: Boolean, 
         default: false
-    },
+    },*/ 
     players: [{
         type: Schema.ObjectId,
         ref: 'User'

@@ -1,0 +1,52 @@
+<section class="row" data-ng-controller="CreateController">
+   <div class="page-header">
+      <h1>Create a Fantasy Game</h1>
+   </div>
+   <div class="col-md-12">
+      <form name="fantasyGameCreateForm" id="fantasyGameCreateForm" class="form-vertical" data-ng-submit="create()">
+         <fieldset>
+            <div class="row">
+            <div class="col-md-6">  
+            <label class="control-label" for="fantasyGameName">Fantasy Game Name</label>
+            <p class="input-group">
+               <div class="controls">
+                  <input name="draftName" data-ng-model="fantasyGameDetails.game.name" id="draftName" class="form-control" type="text" placeholder="The name of your game/league." required></input>
+               </div>
+            </p> 
+            </div> 
+            </div>
+            <div class="row">
+               <div class="col-md-6">
+                  <label class="control-label" for="draftDate">Draft Date</label>
+                  <p class="input-group">
+                     <input type="text" class="form-control" datepicker-append-to-body=true show-button-bar=false datepicker-options="dateOptions" datepicker-popup="{{format}}" data-ng-model="fantasyGameDetails.draft.dt" min-date="minDate" is-open="opened" max-date="'2025-06-22'" ng-required="true" close-text="Close" />
+                     <span class="input-group-btn">
+                       <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                     </span>
+                  </p>
+               </div>
+             </div>
+             <div class="row"> 
+               <div class="col-md-6">
+                  <label class="control-label" for="draftTime">Draft Time</label>
+                  <p class="input-group">
+                      <input id="draftTime" timepicker data-ng-model="fantasyGameDetails.draft.tt" ng-change="changed()" minutes=0 hour-step=1 minute-step=15 show-meridian=true></input>
+                  </p>
+               </div>
+             </div>
+             <div class="row"> 
+               <div class="col-md-6">
+                   <pre class="alert alert-info">Selected Date: {{fantasyGameDetails.draft.dt | date: "yyyy-MM-dd"}} at {{fantasyGameDetails.draft.tt | date:'shortTime' }}</pre>
+               </div>
+             </div>
+             <br /> 
+             <div class="form-group">
+                <input type="submit" class="btn btn-default">
+             </div>
+             <div data-ng-show="error" class="text-danger">
+                <strong data-ng-bind="error"></strong>
+             </div>
+          </fieldset>
+       </form>
+    </div>
+</section>
